@@ -517,15 +517,18 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // creating var scrollTopp outside "for"
 function updatePositions() {
   frame++;
-  window.performance.mark("mark_start_frame");
+
   var phase = 0;
   var scrollPosition = (document.body.scrollTop/1250);
+  var postionA  = [];
 
   var items = document.querySelectorAll('.mover');
-  for (var i = 0; i < items.length; i++) {
+  var l = items.length;
+  for (var i = 0; i < l; i++) {
      phase = Math.sin(scrollPosition + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
+  window.performance.mark("mark_start_frame");
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
